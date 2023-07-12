@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class,'index']);
+Route::get('/post/{id}', [PostController::class, 'view']);
+Route::post('/comment/store/{id}', [CommentController::class, 'store'])->name('comments.add');
+
