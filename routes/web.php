@@ -17,3 +17,6 @@ Route::get('/', [PostController::class,'index']);
 Route::get('/post/{id}', [PostController::class, 'view']);
 Route::post('/comment/store/{id}', [CommentController::class, 'store'])->name('comments.add');
 
+//ajax
+Route::get('/load-post',[PostController::class,'load_post']);
+

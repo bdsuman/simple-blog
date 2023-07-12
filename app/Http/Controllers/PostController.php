@@ -8,13 +8,17 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-     
-           return $posts = Post::with('user','comment')->latest('updated_at')->paginate(5);
-            return view('pages.article', compact('post', 'comments'));
+            return view('pages.index');
+    }
+
+    public function load_post(){
+        $posts = Post::with('user','comment')->latest('updated_at')->get();
+        return $posts;
        
     }
 
     public function view($id){
-        return $posts = Post::with('user','comment')->where('posts.id', $id)->first();
+        $post = Post::with('user','comment')->where('posts.id', $id)->first();
+        return view('pages.post',compact('post'));
     }
 }
